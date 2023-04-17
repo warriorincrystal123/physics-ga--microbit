@@ -1,14 +1,23 @@
-input.onButtonPressed(Button.A, function () {
+input.onButtonPressed(Button.B, function () {
     basic.showString(timeanddate.time(timeanddate.TimeFormat.HMMAMPM))
 })
-input.onButtonPressed(Button.AB, function () {
-    timeanddate.advanceBy(2, timeanddate.TimeUnit.Hours)
+timeanddate.setTime(8, 59, 55, timeanddate.MornNight.AM)
+pins.setAudioPin(AnalogPin.P1)
+music.setVolume(255)
+servos.P0.setAngle(45)
+loops.everyInterval(1000, function () {
+    timeanddate.advanceBy(1, timeanddate.TimeUnit.Seconds)
 })
-timeanddate.setTime(12, 30, 0, timeanddate.MornNight.PM)
 basic.forever(function () {
-    if ((0 as any) == (true as any)) {
-        music.startMelody(music.builtInMelody(Melodies.Ringtone), MelodyOptions.Once)
-    } else {
-        music.stopMelody(MelodyStopOptions.Foreground)
+    if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:00.00") {
+        servos.P0.setAngle(135)
+        basic.pause(1000)
+        servos.P0.setAngle(45)
+        servos.P0.stop()
+    }
+})
+basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P0) == 1) {
+        music.playMelody("C C5 C C5 C C5 C C5 ", 250)
     }
 })
