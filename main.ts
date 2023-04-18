@@ -14,6 +14,17 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P2) == 1 && timeanddate.time(timeanddate.TimeFormat.HMMSSAMPM) == "09:05.00") {
+        radio.sendString("meds weren't taken")
+        basic.showIcon(IconNames.No)
+    } else if (pins.digitalReadPin(DigitalPin.P2) == 0 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
+        basic.showIcon(IconNames.Yes)
+        music.stopAllSounds()
+    } else {
+    	
+    }
+})
+basic.forever(function () {
     if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:00.00") {
         radio.sendString("take your meds")
         servos.P0.setAngle(45)
