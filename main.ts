@@ -17,7 +17,7 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (pins.digitalReadPin(DigitalPin.P0) == 1) {
+    if (pins.digitalReadPin(DigitalPin.P2) == 1) {
         music.playMelody("C C5 C C5 C C5 C C5 ", 250)
     }
 })
