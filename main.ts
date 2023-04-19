@@ -1,3 +1,6 @@
+input.onButtonPressed(Button.AB, function () {
+    timeanddate.advanceBy(1, timeanddate.TimeUnit.Minutes)
+})
 input.onButtonPressed(Button.B, function () {
     basic.showString(timeanddate.time(timeanddate.TimeFormat.HMMAMPM))
 })
@@ -11,6 +14,21 @@ loops.everyInterval(1000, function () {
 basic.forever(function () {
     while (pins.digitalReadPin(DigitalPin.P2) == 1 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
         music.playMelody("C C5 C C5 C C5 C C5 ", 250)
+    }
+})
+basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P2) == 1 && timeanddate.time(timeanddate.TimeFormat.HMMSSAMPM) == "09:05.00") {
+        radio.sendString("meds weren't taken")
+        basic.showIcon(IconNames.No)
+        basic.pause(1000)
+        basic.clearScreen()
+    } else if (pins.digitalReadPin(DigitalPin.P2) == 0 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
+        basic.showIcon(IconNames.Yes)
+        music.stopAllSounds()
+        basic.pause(1000)
+        basic.clearScreen()
+    } else {
+    	
     }
 })
 basic.forever(function () {
