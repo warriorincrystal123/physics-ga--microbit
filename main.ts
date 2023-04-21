@@ -14,6 +14,14 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
+    while (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:00.00") {
+        radio.sendString("take your meds")
+        basic.showIcon(IconNames.Heart)
+        basic.pause(1000)
+        basic.clearScreen()
+    }
+})
+basic.forever(function () {
     if (pins.digitalReadPin(DigitalPin.P2) == 0 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
         basic.showIcon(IconNames.Yes)
         music.stopAllSounds()
@@ -25,10 +33,5 @@ basic.forever(function () {
     if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.30") {
         music.stopAllSounds()
         basic.clearScreen()
-    }
-})
-basic.forever(function () {
-    if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:00.00") {
-        radio.sendString("take your meds")
     }
 })
