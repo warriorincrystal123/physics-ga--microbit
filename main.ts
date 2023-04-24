@@ -9,28 +9,22 @@ loops.everyInterval(1000, function () {
     timeanddate.advanceBy(1, timeanddate.TimeUnit.Seconds)
 })
 basic.forever(function () {
-    while (pins.digitalReadPin(DigitalPin.P2) == 1 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
-        music.playMelody("C C5 C C5 C C5 C C5 ", 250)
-    }
-})
-basic.forever(function () {
     while (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:00.00") {
         radio.sendString("take your meds")
         basic.showIcon(IconNames.Heart)
         basic.pause(1000)
         basic.clearScreen()
     }
-})
-basic.forever(function () {
+    while (pins.digitalReadPin(DigitalPin.P2) == 1 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
+        music.playMelody("C C5 C C5 C C5 C C5 ", 250)
+    }
     if (pins.digitalReadPin(DigitalPin.P2) == 0 && (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) >= "09:00.00" && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) <= "09:05.00")) {
         basic.showIcon(IconNames.Yes)
         music.stopAllSounds()
-    }
-    if (pins.digitalReadPin(DigitalPin.P2) == 1 && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.00") {
+    } else if (pins.digitalReadPin(DigitalPin.P2) == 1 && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.00") {
         radio.sendString("meds weren't taken")
         basic.showIcon(IconNames.No)
-    }
-    if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.30") {
+    } else if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.30") {
         music.stopAllSounds()
         basic.clearScreen()
     }
