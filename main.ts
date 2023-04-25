@@ -5,6 +5,15 @@ timeanddate.setTime(8, 59, 55, timeanddate.MornNight.AM)
 pins.setAudioPin(AnalogPin.P1)
 music.setVolume(255)
 radio.setGroup(218)
+basic.showLeds(`
+    # # # # #
+    # # # # #
+    # # # # #
+    # # # # #
+    # # # # #
+    `)
+basic.pause(500)
+basic.clearScreen()
 loops.everyInterval(1000, function () {
     timeanddate.advanceBy(1, timeanddate.TimeUnit.Seconds)
 })
