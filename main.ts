@@ -33,6 +33,8 @@ basic.forever(function () {
     } else if (pins.digitalReadPin(DigitalPin.P2) == 1 && timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.00") {
         radio.sendString("meds weren't taken")
         basic.showIcon(IconNames.No)
+        basic.pause(1000)
+        basic.clearScreen()
     } else if (timeanddate.time(timeanddate.TimeFormat.HHMMSS24hr) == "09:05.30") {
         music.stopAllSounds()
         basic.clearScreen()
